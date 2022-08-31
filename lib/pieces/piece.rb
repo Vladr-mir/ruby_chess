@@ -3,14 +3,14 @@
 # Blueprint for chess pieces
 class Piece
   attr_reader :position, :total_moves, :notation
-  attr_accessor :is_threatened
+  attr_accessor :threats
 
   def initialize(symbol, notation, position)
     @symbol = symbol
     @notation = notation
     @position = position
     @total_moves = 0
-    @is_threatened = false
+    @threats = 0
   end
 
   def to_s
