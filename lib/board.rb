@@ -4,7 +4,7 @@ require 'colorize'
 
 # Create a board to place chess pieces
 class Board
-  attr_reader :@board_arr
+  attr_reader :board_arr
 
   def initialize
     @board_arr = Array.new(8) { Array.new(8) }
@@ -32,6 +32,6 @@ class Board
   def format_square(square, *index)
     background = (index[0] - index[1]).even? ? :white : :green
     formatted = square.nil? ? "\s\s" : "#{square}\s"
-    formatted.colorize(background: background)
+    formatted.colorize(background: background, color: :black)
   end
 end
