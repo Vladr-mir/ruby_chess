@@ -5,10 +5,13 @@ class Piece
   attr_reader :position, :total_moves, :notation
   attr_accessor :threats
 
-  def initialize(symbol, notation, position)
+  def initialize(symbol, notation, position, extend_moveset: false, extend_attackset: false)
     @symbol = symbol
     @notation = notation
     @position = position
+    @board_size = 8
+    @extend_moveset = extend_moveset
+    @extend_attackset = extend_attackset
     @total_moves = 0
     @threats = 0
   end
