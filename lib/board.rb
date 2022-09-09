@@ -10,6 +10,10 @@ class Board
     @board_arr = Array.new(8) { Array.new(8) }
   end
 
+  def update_pos(value, column, row)
+    @board_arr[row][column] = value
+  end
+
   def to_s
     formatted = ''
     @board_arr.each_with_index do |row, row_index|
