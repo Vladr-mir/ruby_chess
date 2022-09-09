@@ -2,8 +2,8 @@
 
 # Blueprint for chess pieces
 class Piece
-  attr_reader :position, :total_moves, :notation
-  attr_accessor :threats
+  attr_reader :total_moves, :notation
+  attr_accessor :threats, :position
 
   def initialize(symbol, notation, position, extend_moveset: false, extend_attackset: false)
     @symbol = symbol
