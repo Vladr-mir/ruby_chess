@@ -1,1 +1,1 @@
-# ruby_chess
+# An implementation of Chess in ruby
