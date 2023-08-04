@@ -35,7 +35,7 @@ class ChessBoard
     if (row_i - squ_j).even?
       formatted.colorize(color: :black, background: :white)
     else
-      formatted.colorize(color: :black, background: :green)
+      formatted.colorize(color: :black, background: :blue)
     end
   end
 end
