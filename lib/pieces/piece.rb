@@ -45,9 +45,11 @@ class Piece
 
   # Find if the given position is accesible using an extended moveset
   def valid_direction_extended?(pos)
-    relative_move = distance(pos)
-    relative_move = relative_move.map { |axis| axis <=> 0 }
-    moveset.any?(relative_move)
+    relative_distance = distance(pos)
+    angle = find_angle(relative_distance)
+
+    relative_distance = relative_distance.map { |axis| axis <=> 0 }
+    moveset.any?(relative_distance) && (angle == 45 || angle.zero?)
   end
 
   # Finds if the given position is accesible using the moveset
@@ -63,6 +65,13 @@ class Piece
 
   # Check if the given position is out of bound
   def out_of_bound?(pos)
-    pos.count { |axis| axis >= BOARD_SIZE }.positive?
+    pos.count { |axis| axis.abs >= BOARD_SIZE }.positive?
+  end
+
+  # Find the angles given two positions
+  def find_angle(dimensions)
+    return 0 if dimensions[0].zero? || dimensions[1].zero?
+
+    Math.atan(dimensions[0].abs / dimensions[1].abs.to_f) * (180 / Math::PI)
   end
 end
