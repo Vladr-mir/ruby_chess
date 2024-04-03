@@ -14,6 +14,7 @@ class Piece
   def initialize(pos, symbol = "♙")
     @symbol = symbol
     @pos = pos
+    @is_moveset_extended = false
   end
 
   def to_s
@@ -23,7 +24,11 @@ class Piece
   def valid_direction?(move)
     return false if out_of_bound?(move)
 
-    !get_direction(move).empty?
+    if @is_moveset_extended
+      valid_move_extended?(move)
+    else
+      !get_direction(move).empty?
+    end
   end
 
   def moveset
@@ -35,7 +40,7 @@ class Piece
     ]
   end
 
-  # private
+  private
 
   def valid_move_extended?(move)
     range_move = @pos.clone
