@@ -1,7 +1,11 @@
 # frozen_string_literal: false
 
+require_relative "modules/arr_helper"
+
 # Piece functionality and movility
 class Piece
+  include ArrHelper
+
   attr_reader :symbol
   attr_accessor :pos
 
@@ -39,12 +43,7 @@ class Piece
     direction = direction.map { |axis| axis <=> 0 }
     return false unless moveset.any?(direction)
 
-    until range_move == move || out_of_bound?(range_move)
-      range_move[0] += direction[0]
-      range_move[1] += direction[1]
-      p range_move
-    end
-
+    range_move = sum_arr(range_move, direction) until range_move == move || out_of_bound?(range_move)
     range_move == move
   end
 
@@ -54,7 +53,8 @@ class Piece
   end
 
   def find_relative_move(move)
-    move.zip(@pos).map { |pos| pos.inject(:-) }
+    # move.zip(@pos).map { |pos| pos.inject(:-) }
+    substract_arr(move, @pos)
   end
 
   def out_of_bound?(pos)
