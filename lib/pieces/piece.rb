@@ -14,20 +14,21 @@ class Piece
   def initialize(pos, symbol = "♙")
     @symbol = symbol
     @pos = pos
-    @is_moveset_extended = true
+    @is_moveset_extended = false
   end
 
   def to_s
     @symbol
   end
 
-  def valid_direction?(move)
+  def valid_move?(move)
     return false if out_of_bound?(move)
 
     if @is_moveset_extended
-      valid_move_extended?(move)
+      valid_direction_extended?(move)
     else
-      !get_direction(move).empty?
+      # !valid_direction_extended?(move).empty?
+      valid_direction?(move)
     end
   end
 
@@ -42,22 +43,25 @@ class Piece
 
   private
 
-  def valid_move_extended?(move)
-    relative_move = find_relative_move(move)
+  # Find if the given position is accesible using an extended moveset
+  def valid_direction_extended?(pos)
+    relative_move = distance(pos)
     relative_move = relative_move.map { |axis| axis <=> 0 }
     moveset.any?(relative_move)
   end
 
-  def get_direction(move)
-    relative_move = find_relative_move(move)
-    moveset.select { |direction| direction == relative_move }.flatten
+  # Finds if the given position is accesible using the moveset
+  def valid_direction?(pos)
+    relative_distance = distance(pos)
+    !moveset.select { |direction| direction == relative_distance }.flatten.empty?
   end
 
-  def find_relative_move(move)
-    # move.zip(@pos).map { |pos| pos.inject(:-) }
-    substract_arr(move, @pos)
+  # Find the distance in each of the values to move to a given position
+  def distance(pos)
+    substract_arr(pos, @pos)
   end
 
+  # Check if the given position is out of bound
   def out_of_bound?(pos)
     pos.count { |axis| axis >= BOARD_SIZE }.positive?
   end
