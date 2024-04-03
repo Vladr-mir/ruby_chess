@@ -15,27 +15,23 @@ class ChessBoard
     board[pos[0]][pos[1]] = symbol
   end
 
-  def pretty_print
+  def to_s
+    formatted = ""
     board.each_with_index do |row, row_i|
-      formatted = ""
       row.each_with_index { |square, squ_j| formatted << format_row(square, row_i + 1, squ_j + 1) }
-      puts formatted
+      formatted += "\n"
     end
+    formatted
   end
 
   private
 
   def format_row(square, row_i, squ_j)
-    formatted = if square.nil?
-                  "\s\s"
-                else
-                  "#{square}\s"
-                end
-
+    formatted = square.nil? ? "\s\s" : "#{square}\s"
     if (row_i - squ_j).even?
       formatted.colorize(color: :black, background: :white)
     else
-      formatted.colorize(color: :black, background: :blue)
+      formatted.colorize(color: :black, background: :light_blue)
     end
   end
 end
