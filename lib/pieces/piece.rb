@@ -14,7 +14,7 @@ class Piece
   def initialize(pos, symbol = "♙")
     @symbol = symbol
     @pos = pos
-    @is_moveset_extended = false
+    @is_moveset_extended = true
   end
 
   def to_s
@@ -43,13 +43,9 @@ class Piece
   private
 
   def valid_move_extended?(move)
-    range_move = @pos.clone
-    direction = find_relative_move(move)
-    direction = direction.map { |axis| axis <=> 0 }
-    return false unless moveset.any?(direction)
-
-    range_move = sum_arr(range_move, direction) until range_move == move || out_of_bound?(range_move)
-    range_move == move
+    relative_move = find_relative_move(move)
+    relative_move = relative_move.map { |axis| axis <=> 0 }
+    moveset.any?(relative_move)
   end
 
   def get_direction(move)
@@ -63,6 +59,6 @@ class Piece
   end
 
   def out_of_bound?(pos)
-    pos.count { |axis| axis >= BOARD_SIZE - 1 }.positive?
+    pos.count { |axis| axis >= BOARD_SIZE }.positive?
   end
 end
