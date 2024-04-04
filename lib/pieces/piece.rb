@@ -11,10 +11,10 @@ class Piece
 
   BOARD_SIZE = 8
 
-  def initialize(pos, symbol = "♙")
+  def initialize(pos, is_moveset_extended, symbol = "♙")
     @symbol = symbol
     @pos = pos
-    @is_moveset_extended = false
+    @is_moveset_extended = is_moveset_extended
   end
 
   def to_s
