@@ -4,7 +4,7 @@ require "./lib/board"
 
 # frozen_string_literal: true
 
-describe do
+RSpec.describe "Board" do
   describe "#board" do
     it "returns an empty grid" do
       data = Array.new(8) { Array.new(8) }
