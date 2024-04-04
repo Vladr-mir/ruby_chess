@@ -1,4 +1,4 @@
-# frozen_literal_string: false
+# frozen_string_literal: false
 
 require_relative "piece"
 require "colorize"
