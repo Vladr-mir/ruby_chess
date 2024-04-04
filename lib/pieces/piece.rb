@@ -41,6 +41,20 @@ class Piece
     ]
   end
 
+  # Get all the moves to get to the desired position
+  def get_moves_to_pos(pos)
+    moves = []
+    current_pos = @pos.clone
+    direction = distance(pos).map { |axis| axis <=> 0 }
+    return moves unless moveset.any?(direction) && valid_move?(pos)
+
+    until current_pos == pos || out_of_bound?(current_pos)
+      current_pos = sum_arr(current_pos, direction)
+      moves << current_pos
+    end
+    moves
+  end
+
   private
 
   # Find if the given position is accesible using an extended moveset
