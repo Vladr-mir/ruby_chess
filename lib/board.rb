@@ -15,13 +15,18 @@ class ChessBoard
     board[pos[0]][pos[1]] = symbol
   end
 
+  def at(pos)
+    board[pos[0]][pos[1]]
+  end
+
   def to_s
     formatted = ""
-    board.each_with_index do |row, row_i|
+    board.reverse.each_with_index do |row, row_i|
+      formatted += (row_i + 1).to_s
       row.each_with_index { |square, squ_j| formatted << format_row(square, row_i + 1, squ_j + 1) }
       formatted += "\n"
     end
-    formatted
+    formatted += " a b c d e f g h"
   end
 
   private
