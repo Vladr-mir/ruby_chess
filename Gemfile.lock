@@ -2,12 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (1.1.0)
+    require_all (3.0.0)
 
 PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
   colorize
+  require_all
 
 BUNDLED WITH
    2.4.10
