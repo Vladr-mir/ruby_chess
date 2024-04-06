@@ -12,11 +12,11 @@ class ChessBoard
   end
 
   def place_symbol(pos, symbol)
-    board[pos[0]][pos[1]] = symbol
+    @board[pos[0]][pos[1]] = symbol
   end
 
   def at(pos)
-    board[pos[0]][pos[1]]
+    @board[pos[0]][pos[1]]
   end
 
   def to_s
