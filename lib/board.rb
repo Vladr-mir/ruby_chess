@@ -21,8 +21,8 @@ class ChessBoard
 
   def to_s
     formatted = ""
-    board.reverse.each_with_index do |row, row_i|
-      formatted += (row_i + 1).to_s
+    board.reverse_each.with_index do |row, row_i|
+      formatted += (size - row_i).to_s
       row.each_with_index { |square, squ_j| formatted << format_row(square, row_i + 1, squ_j + 1) }
       formatted += "\n"
     end
