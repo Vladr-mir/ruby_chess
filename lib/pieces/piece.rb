@@ -1,10 +1,12 @@
 # frozen_string_literal: false
 
-require_relative "modules/arr_helper"
+require "./lib/modules/notation"
+require "./lib/modules/arr_helper"
 
 # Piece functionality and movility
 class Piece
   include ArrHelper
+  include Notation
 
   attr_reader :symbol
   attr_accessor :pos
@@ -19,6 +21,10 @@ class Piece
 
   def to_s
     @symbol
+  end
+
+  def to_notation
+    pos_to_notation(@pos)
   end
 
   def valid_move?(move)
