@@ -20,7 +20,7 @@ module Notation
   end
 
   def valid_notation?(notation)
-    notation = notation.split("\s")
+    notation = notation.downcase.split("\s")
     return false if notation.length > 2
 
     is_valid = true
