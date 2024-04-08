@@ -12,8 +12,20 @@ module Notation
     separate_elements(notation)
   end
 
+  # Returns the notation given a valid position
   def pos_to_notation(pos)
+    return "" if pos.length != 2
+
     "#{COLUMN_HELPER[pos[0]]}#{pos[1]}"
+  end
+
+  def valid_notation?(notation)
+    notation = notation.split("\s")
+    return false if notation.length > 2
+
+    is_valid = true
+    notation.each { |pos| is_valid &&= /[rnbkqp]?[a-h]{1}[1-8]{1}/.match?(pos) }
+    is_valid
   end
 
   private
