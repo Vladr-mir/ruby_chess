@@ -7,16 +7,16 @@ module Notation
   # Returns the position given a valid notation
   def notation_to_pos(notation)
     notation = /[a-h]{1}[1-8]{1}/.match(notation)
-    return [] if notation.empty?
+    return [] if notation[0].empty?
 
-    separate_elements(notation)
+    separate_elements(notation[0])
   end
 
   # Returns the notation given a valid position
   def pos_to_notation(pos)
     return "" if pos.length != 2
 
-    "#{COLUMN_HELPER[pos[0]]}#{pos[1]}"
+    "#{COLUMN_HELPER[pos[1]]}#{pos[0] + 1}"
   end
 
   def valid_notation?(notation)
