@@ -1,42 +1,56 @@
 # frozen_string_literal: false
 
 require_relative "board"
+require "./lib/modules/notation"
 
 # Logic For the game
 class GameLogic
-  attr_reader :story, :board
+  include Notation
+  attr_reader :story, :board, :players
 
   def initialize(story = "")
     @story = story
     @board = ChessBoard.new(8)
+    @players = []
+    @turn = 0
   end
 
-  def move_piece(old_pos, new_pos)
-    piece = @board.at(old_pos)
-    moves = piece.get_moves_to_pos(new_pos)
-
-    return if piece.nil? || same_color?(piece, board.at(new_pos)) || cutoff?(moves) # piece.valid_move?(new_pos)
-
-    piece.pos = new_pos
-    @board.place_symbol(old_pos, nil)
-    @board.place_symbol(piece.pos, piece)
+  def add_player(player)
+    @players << player
   end
 
-  private
+  def current_player
+    @players[@turn]
+  end
 
-  def cutoff?(positions)
-    return true if positions.empty?
+  # Advances the turn
+  def next_turn
+    if @turn >= @players.length - 1
+      @turn = 0
+    else
+      @turn += 1
+    end
+    @turn
+  end
 
-    # tracker = false
-    positions.each do |pos, i|
-      return true unless @board.at(pos).nil? || i == positions.length
+  # Asks the player to move the piece if the move is legal
+  def move_piece(notation)
+    return false unless valid_notation?(notation)
+
+    notation = notation.split("\s")
+    movement = notation.map { |pos| notation_to_pos(pos) }
+    if current_player.valid_move?(notation, board)
+      current_player.move_piece(notation[0], movement, @board)
+      next_turn
+      return true
     end
     false
   end
 
-  def same_color?(pos1, pos2)
-    return false if pos2.nil?
-
-    pos1.is_white == pos2.is_white
+  # Places all of the players pieces on the board
+  def place_all
+    @players.each do |player|
+      player.each { |piece| @board.place_symbol(piece.pos, piece) }
+    end
   end
 end
