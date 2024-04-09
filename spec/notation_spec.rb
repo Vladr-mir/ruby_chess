@@ -7,6 +7,13 @@ class Helper
 end
 
 RSpec.describe "Notation module" do
+  describe "notation_to_pos" do
+    it "Returns the resulting position" do
+      helper = Helper.new
+      expect(helper.notation_to_pos("g3")).to eq([2, 6])
+    end
+  end
+
   describe "valid_notation?" do
     it "Returns true when given a valid single position" do
       helper = Helper.new
