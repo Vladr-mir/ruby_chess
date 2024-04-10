@@ -26,9 +26,9 @@ class Player
     target = @pieces[notation_move[1]]
     return false if piece.nil? || !target.nil?
 
-    moves = piece.get_moves_to_pos(notation_to_pos(notation_move[1]))
-
-    !cutoff?(moves, board)
+    target_pos = notation_to_pos(notation_move[1])
+    moves = piece.get_moves_to_pos(target_pos)
+    piece.is_moveset_extended ? !cutoff?(moves, board) : piece.valid_move?(target_pos)
   end
 
   # Moves the piece to another position in the board
@@ -80,7 +80,9 @@ class Player
     return true if positions.empty?
 
     positions.each_with_index do |pos, i|
-      return true unless board.at(pos).nil? || i == positions.length
+      break if i >= positions.length - 1
+
+      return true unless board.at(pos).nil?
     end
     false
   end
