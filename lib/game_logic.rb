@@ -35,15 +35,15 @@ class GameLogic
     @turn
   end
 
-  def load
-    return nil unless File.exist?("saves/classic_chess.yaml")
+  def load(filename)
+    return nil unless File.exist?("saves/#{filename}.yaml")
 
     permitted_classes = [ChessBoard, Player, GameLogic, Rook, Knight, Bishop, Queen]
     YAML.load_file("saves/classic_chess.yaml", permitted_classes: permitted_classes, aliases: true)
   end
 
-  def save
-    file = File.open("saves/classic_chess.yaml", "w")
+  def save(filename)
+    file = File.open("saves/#{filename}.yaml", "w")
     file.write(YAML.dump(self))
   ensure
     file.close
