@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-require "colorize"
+require 'colorize'
 
 # Chess board definition
 class ChessBoard
@@ -20,13 +20,13 @@ class ChessBoard
   end
 
   def to_s
-    formatted = ""
+    formatted = ''
     board.reverse_each.with_index do |row, row_i|
       formatted += (size - row_i).to_s
       row.each_with_index { |square, squ_j| formatted << format_row(square, row_i + 1, squ_j + 1) }
       formatted += "\n"
     end
-    formatted += " a b c d e f g h"
+    formatted += ' a b c d e f g h'
   end
 
   private

@@ -1,16 +1,16 @@
 # frozen_string_literal: false
 
-require_relative "board"
-require_relative "player"
-require "./lib/modules/notation"
-require "yaml"
+require_relative 'board'
+require_relative 'player'
+require './lib/modules/notation'
+require 'yaml'
 
 # Logic For the game
 class GameLogic
   include Notation
   attr_reader :story, :board, :players
 
-  def initialize(story = "")
+  def initialize(story = '')
     @story = story
     @board = ChessBoard.new(8)
     @players = []
@@ -39,11 +39,11 @@ class GameLogic
     return nil unless File.exist?("saves/#{filename}.yaml")
 
     permitted_classes = [ChessBoard, Player, GameLogic, Rook, Knight, Bishop, Queen]
-    YAML.load_file("saves/classic_chess.yaml", permitted_classes: permitted_classes, aliases: true)
+    YAML.load_file('saves/classic_chess.yaml', permitted_classes: permitted_classes, aliases: true)
   end
 
   def save(filename)
-    file = File.open("saves/#{filename}.yaml", "w")
+    file = File.open("saves/#{filename}.yaml", 'w')
     file.write(YAML.dump(self))
   ensure
     file.close

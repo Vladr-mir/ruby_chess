@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
-require "./lib/modules/notation"
-require "./lib/modules/arr_helper"
+require './lib/modules/notation'
+require './lib/modules/arr_helper'
 
 # Piece functionality and movility
 class Piece
@@ -13,7 +13,7 @@ class Piece
 
   BOARD_SIZE = 8
 
-  def initialize(pos, is_moveset_extended, symbol = "♙")
+  def initialize(pos, is_moveset_extended, symbol = '♙')
     @symbol = symbol
     @pos = pos
     @is_moveset_extended = is_moveset_extended

@@ -1,8 +1,8 @@
 # frozen_string_literal: false
 
-require "require_all"
-require "yaml"
-require_all "lib/pieces"
+require 'require_all'
+require 'yaml'
+require_all 'lib/pieces'
 
 # Player class
 class Player
@@ -54,9 +54,9 @@ class Player
   end
 
   # Creates a piece and adds it to the @pieces hash
-  def create_piece(pos, type = "p")
+  def create_piece(pos, type = 'p')
     case type.downcase
-    when "p"
+    when 'p'
       piece = Rook.new(pos, @is_white)
     end
 

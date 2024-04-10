@@ -24,5 +24,5 @@ Style/FrozenStringLiteralComment:
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
+# Style/StringLiterals:
+#   EnforcedStyle: double_quotes

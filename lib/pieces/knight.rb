@@ -1,11 +1,11 @@
 # frozen_string_literal: false
 
-require_relative "piece"
+require_relative 'piece'
 
 # Knight piece
 class Knight < Piece
   def initialize(pos, is_white)
-    symbol = is_white ? "♘" : "♞"
+    symbol = is_white ? '♘' : '♞'
     super(pos, false, symbol)
   end
 

@@ -14,7 +14,7 @@ module Notation
 
   # Returns the notation given a valid position
   def pos_to_notation(pos)
-    return "" if pos.length != 2
+    return '' if pos.length != 2
 
     "#{COLUMN_HELPER[pos[1]]}#{pos[0] + 1}"
   end
