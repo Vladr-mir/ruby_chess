@@ -1,6 +1,6 @@
 # Ruby Chess
 
-This project is an implementation of the chess game in the ruby languaje. to play the game run the command: `ruby lib/main.rb`.
+This project is an implementation of the chess game in the ruby languaje. to play the game run the command: `ruby main.rb`.
 
 ## Movement rules
 
