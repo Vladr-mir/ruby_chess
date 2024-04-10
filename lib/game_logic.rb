@@ -1,7 +1,9 @@
 # frozen_string_literal: false
 
 require_relative "board"
+require_relative "player"
 require "./lib/modules/notation"
+require "yaml"
 
 # Logic For the game
 class GameLogic
@@ -31,6 +33,20 @@ class GameLogic
       @turn += 1
     end
     @turn
+  end
+
+  def load
+    return nil unless File.exist?("saves/classic_chess.yaml")
+
+    permitted_classes = [ChessBoard, Player, GameLogic, Rook, Knight, Bishop, Queen]
+    YAML.load_file("saves/classic_chess.yaml", permitted_classes: permitted_classes, aliases: true)
+  end
+
+  def save
+    file = File.open("saves/classic_chess.yaml", "w")
+    file.write(YAML.dump(self))
+  ensure
+    file.close
   end
 
   # Asks the player to move the piece if the move is legal
