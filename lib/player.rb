@@ -37,6 +37,7 @@ class Player
     board.place_symbol(movement[0], nil)
     board.place_symbol(movement[1], piece)
     piece.pos = movement[1]
+    piece.movement_counter += 1
     update_piece(notation)
   end
 
