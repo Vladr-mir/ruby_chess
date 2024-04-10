@@ -8,7 +8,7 @@ class Piece
   include ArrHelper
   include Notation
 
-  attr_reader :symbol
+  attr_reader :symbol, :is_moveset_extended
   attr_accessor :pos
 
   BOARD_SIZE = 8
