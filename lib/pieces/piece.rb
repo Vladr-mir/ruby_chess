@@ -9,7 +9,7 @@ class Piece
   include Notation
 
   attr_reader :symbol, :is_moveset_extended
-  attr_accessor :pos
+  attr_accessor :pos, :movement_counter
 
   BOARD_SIZE = 8
 
@@ -17,6 +17,7 @@ class Piece
     @symbol = symbol
     @pos = pos
     @is_moveset_extended = is_moveset_extended
+    @movement_counter = 0
   end
 
   def to_s
